@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - ITE Intern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #ffffff;
+            color: #000000;
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            z-index: 1000;
+            padding: 2rem 0;
+        }
+
+        nav .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: opacity 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000000;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #333333;
+            margin-bottom: 3rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+            cursor: pointer;
+            border: 2px solid #000000;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .cta-button:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        /* About Section */
+        section {
+            padding: 8rem 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #000000;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.05rem;
+            color: #333333;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        /* Skills Section */
+        .skills-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .skill-category h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: #f5f5f5;
+            padding: 0.7rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #333333;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: #000000;
+            color: #ffffff;
+            border-color: #000000;
+        }
+
+        /* Education Section */
+        .education-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .education-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .education-meta {
+            color: #666666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .education-item p {
+            color: #333333;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Achievements Section */
+        .achievements-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .achievement-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: center;
+        }
+
+        .achievement-item:last-child {
+            border-bottom: none;
+        }
+
+        .achievement-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .achievement-item p {
+            color: #666666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #f9f9f9;
+            padding: 8rem 2rem;
+            border-bottom: none;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content p {
+            font-size: 1.05rem;
+            color: #333333;
+            margin-bottom: 3rem;
+            line-height: 1.9;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 2px solid #000000;
+            color: #000000;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: all 0.4s;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .contact-link:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* Footer */
+        footer {
+            background: #ffffff;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+            color: #999999;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                margin-top: 40px;
+                padding-bottom: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-link {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+
+            .skill-list {
+                gap: 0.7rem;
+            }
+
+            .skill-tag {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#home" class="logo">SD</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>ITE Intern</h1>
+                <p>Passionate about creating innovative solutions through code. Skilled in web development, mobile applications, and digital optimization. Ready to contribute to meaningful projects.</p>
+                <a href="#contact" class="cta-button">Get in Touch</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <p>Dynamic and detail-oriented software developer with a passion for learning and adapting to new technologies. I bring experience in full-stack development, UI/UX design, and digital marketing optimization.</p>
+                    <p>Currently pursuing my Higher Nitec (DPP) in IT Applications Development at ITE College West, with a strong foundation in N-Levels education. I thrive in collaborative team environments and am committed to continuous learning and growth.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2>Skills</h2>
+                <div class="skills-content">
+                    <div class="skill-category">
+                        <h3>Development</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Software Development</span>
+                            <span class="skill-tag">Mobile Apps</span>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Design & UX</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Adobe XD</span>
+                            <span class="skill-tag">Photoshop</span>
+                            <span class="skill-tag">Illustrator</span>
+                            <span class="skill-tag">Prototyping</span>
+                            <span class="skill-tag">UI/UX</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Web & Marketing</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">SEO</span>
+                            <span class="skill-tag">Google Analytics</span>
+                            <span class="skill-tag">WordPress</span>
+                            <span class="skill-tag">Canva</span>
+                            <span class="skill-tag">Project Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="education-content">
+                    <div class="education-item">
+                        <h3>Higher Nitec (DPP) in IT Applications Development</h3>
+                        <div class="education-meta">ITE College West | 01/2025 - 01/2027</div>
+                        <p>Currently pursuing comprehensive training in IT applications development, with focus on practical applications and industry-relevant technologies.</p>
+                    </div>
+
+                    <div class="education-item">
+                        <h3>Secondary School Education (N-Levels)</h3>
+                        <div class="education-meta">Regent Secondary School | 01/2021 - 12/2024</div>
+                        <p>Completed secondary education with strong academic performance and multiple recognitions for character and achievement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements">
+            <div class="container">
+                <h2>Achievements</h2>
+                <div class="achievements-content">
+                    <div class="achievement-item">
+                        <h3>Edusave Merit Bursary</h3>
+                        <p>Awarded to top 25% of level and course with good conduct (2024, 2023)</p>
+                    </div>
+
+                    <div class="achievement-item">
+                        <h3>Edusave Certificate of Academic Achievement</h3>
+                        <p>Singapore Ministry of Education recognition for excellence in academics, character, and leadership (2023)</p>
+                    </div>
+
+                    <div class="achievement-item">
+                        <h3>Edusave Character Award</h3>
+                        <p>Awarded to top 5% of students for exemplary character and outstanding personal qualities (2023)</p>
+                    </div>
+
+                    <div class="achievement-item">
+                        <h3>Edusave Good Progress Award</h3>
+                        <p>Recognition for being within the top 10% of students with significant improvement (2022)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <h2>Get In Touch</h2>
+                    <p>I'm actively seeking internship opportunities to apply my skills and grow as a developer. Feel free to reach out!</p>
+                    <div class="contact-links">
+                        <a href="mailto:your.email@example.com" class="contact-link">Email</a>
+                        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/yourprofile" class="contact-link" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 ITE Intern. Designed with simplicity and purpose.</p>
+    </footer>
+</body>
+</html>
